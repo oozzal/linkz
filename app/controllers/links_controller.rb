@@ -7,8 +7,10 @@ class LinksController < ApplicationController
   end
 
   def create
-    params[:hosts].each do |host|
-      Link.find_or_create_by(host: host)
+    if params[:hosts].present?
+      params[:hosts].each do |host|
+        Link.find_or_create_by(host: host)
+      end
     end
     render nothing: true, status: 200
   end
